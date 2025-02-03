@@ -1,9 +1,12 @@
-FROM alpine:latest
+
 FROM amazoncorretto:21-alpine-jdk
 
+WORKDIR /app
+
+# Copia el archivo JAR generado
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
 
 
-COPY /target/demo-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
 
-entrypoint ["java", "-jar", "/app.jar"]
-CMD ["/bin/sh"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
